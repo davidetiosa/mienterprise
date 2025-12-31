@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, FormEvent } from 'react'
-import { FaMapMarkerAlt, FaClock, FaBriefcase } from 'react-icons/fa'
+import { FaMapMarkerAlt, FaClock, FaBriefcase, FaPhone, FaEnvelope } from 'react-icons/fa'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -99,6 +99,28 @@ export default function Contact() {
           8:00 AM - 6:00 PM<br /><br />
           Sunday<br />
           Closed
+        </>
+      ),
+    },
+    {
+      icon: <FaPhone className="text-3xl" />,
+      title: 'Phone',
+      content: (
+        <>
+          <a href="tel:07030739108" className="hover:text-primary transition-colors">
+            07030739108
+          </a>
+        </>
+      ),
+    },
+    {
+      icon: <FaEnvelope className="text-3xl" />,
+      title: 'Email',
+      content: (
+        <>
+          <a href="mailto:idemudiamiriam123@gmail.com" className="hover:text-primary transition-colors break-all">
+            idemudiamiriam123@gmail.com
+          </a>
         </>
       ),
     },
