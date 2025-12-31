@@ -38,15 +38,15 @@ export default function WhyChoose() {
           {benefits.map((benefit, index) => (
             <div
               key={index}
-              className="p-6 hover:bg-gray-50 rounded-lg transition-all duration-300"
+              className="p-6 hover:bg-gradient-to-br hover:from-accent-light/10 hover:to-accent/5 rounded-lg transition-all duration-300 group"
             >
-              <div className="text-6xl font-bold text-primary-light opacity-30 mb-4">
+              <div className="text-6xl font-bold text-accent opacity-40 group-hover:opacity-60 transition-opacity mb-4">
                 {benefit.number}
               </div>
               <h3 className="text-xl font-bold text-primary mb-3">
                 {benefit.title}
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-700 leading-relaxed">
                 {benefit.description}
               </p>
             </div>

@@ -18,6 +18,15 @@ export default function Contact() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
+    // Validate all fields
+    if (!formData.name || !formData.email || !formData.phone || !formData.message) {
+      setFormStatus({
+        type: 'error',
+        message: 'Please fill in all fields.',
+      })
+      return
+    }
+
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(formData.email)) {
@@ -28,10 +37,26 @@ export default function Contact() {
       return
     }
 
-    // Simulate form submission (replace with your actual API endpoint)
+    // Show loading state
+    setFormStatus({
+      type: null,
+      message: 'Sending...',
+    })
+
     try {
-      // In production, send to your backend API or email service
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message')
+      }
 
       setFormStatus({
         type: 'success',
@@ -46,7 +71,7 @@ export default function Contact() {
     } catch (error) {
       setFormStatus({
         type: 'error',
-        message: 'Something went wrong. Please try again later.',
+        message: error instanceof Error ? error.message : 'Something went wrong. Please try again later.',
       })
     }
   }
@@ -92,7 +117,7 @@ export default function Contact() {
   ]
 
   return (
-    <section id="contact" className="py-20 bg-gray-50">
+    <section id="contact" className="py-20 bg-gradient-to-b from-white to-accent-light/15">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -186,12 +211,14 @@ export default function Contact() {
               </button>
 
               {/* Form Status Message */}
-              {formStatus.type && (
+              {formStatus.message && (
                 <div
                   className={`p-4 rounded-lg ${
                     formStatus.type === 'success'
                       ? 'bg-green-100 text-green-800 border border-green-200'
-                      : 'bg-red-100 text-red-800 border border-red-200'
+                      : formStatus.type === 'error'
+                      ? 'bg-red-100 text-red-800 border border-red-200'
+                      : 'bg-blue-100 text-blue-800 border border-blue-200'
                   }`}
                 >
                   {formStatus.message}

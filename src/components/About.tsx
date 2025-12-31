@@ -69,15 +69,15 @@ export default function About() {
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="bg-gray-50 p-8 rounded-xl text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+                className="bg-gradient-to-br from-accent-light/20 to-accent/10 p-8 rounded-xl text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-accent/20"
               >
-                <div className="text-primary mb-4 flex justify-center">
+                <div className="text-secondary mb-4 flex justify-center">
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-bold text-primary mb-2">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <p className="text-gray-700">{feature.description}</p>
               </div>
             ))}
           </div>

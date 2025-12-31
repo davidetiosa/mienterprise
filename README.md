@@ -142,15 +142,19 @@ Edit the component files in `/src/components/`:
 
 ### Contact Form
 
-The form in [Contact.tsx](src/components/Contact.tsx) currently simulates submission. To make it functional:
+The contact form is **fully functional** and sends emails to **oldmankola@gmail.com** using Resend.
 
-1. **Option A: Email Service (Recommended)**
-   - Use [Resend](https://resend.com/), [SendGrid](https://sendgrid.com/), or [Formspree](https://formspree.io/)
-   - Add API route: `/src/app/api/contact/route.ts`
+**Setup required:**
+1. Get a free Resend API key from [resend.com](https://resend.com)
+2. Add `RESEND_API_KEY` to your environment variables
+3. See detailed setup guide: [CONTACT_FORM_SETUP.md](CONTACT_FORM_SETUP.md)
 
-2. **Option B: Form Backend**
-   - Use [Vercel Forms](https://vercel.com/docs/functions/serverless-functions)
-   - Or connect to your own backend
+**Features:**
+- Email notifications to oldmankola@gmail.com
+- Professional HTML email template
+- Form validation
+- Reply-to set to customer's email
+- Loading states and error handling
 
 ## Technologies Used
 
@@ -158,6 +162,7 @@ The form in [Contact.tsx](src/components/Contact.tsx) currently simulates submis
 - **TypeScript** - Type safety
 - **Tailwind CSS** - Styling
 - **React Icons** - Icon library
+- **Resend** - Email service for contact form
 - **Vercel** - Hosting platform
 
 ## Contact Information
